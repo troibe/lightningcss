@@ -174,6 +174,43 @@ jobs:
             *.node
             lightningcss
 
+  build-linux-riscv64:
+    name: build-riscv64gc-unknown-linux-gnu
+    runs-on:
+      - self-hosted
+      - Linux
+      - riscv64
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Node.JS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: riscv64gc-unknown-linux-gnu
+
+      - uses: bahmutov/npm-install@v1.8.32
+      - name: Build release
+        run: yarn build-release
+        env:
+          RUST_TARGET: riscv64gc-unknown-linux-gnu
+      - name: Build CLI
+        run: |
+          yarn napi build --bin lightningcss --release --features cli --target riscv64gc-unknown-linux-gnu
+          mv target/riscv64gc-unknown-linux-gnu/release/lightningcss lightningcss
+      - name: Strip debug symbols
+        run: strip *.node lightningcss
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bindings-riscv64gc-unknown-linux-gnu
+          path: |
+            *.node
+            lightningcss
+
   build-freebsd:
     runs-on: ubuntu-latest
     steps:
@@ -257,6 +294,7 @@ jobs:
     needs:
       - build
       - build-linux
+      - build-linux-riscv64
       - build-apple-silicon
       - build-freebsd
       - build-wasm

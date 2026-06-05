@@ -26,6 +26,10 @@ const triples = [
     libc: 'glibc',
   },
   {
+    name: 'riscv64gc-unknown-linux-gnu',
+    libc: 'glibc',
+  },
+  {
     name: 'armv7-unknown-linux-gnueabihf',
   },
   {
@@ -46,6 +50,7 @@ const triples = [
 const cpuToNodeArch = {
   x86_64: 'x64',
   aarch64: 'arm64',
+  riscv64gc: 'riscv64',
   i686: 'ia32',
   armv7: 'arm',
 };
