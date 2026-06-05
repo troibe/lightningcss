@@ -176,10 +176,7 @@ jobs:
 
   build-linux-riscv64:
     name: build-riscv64gc-unknown-linux-gnu
-    runs-on:
-      - self-hosted
-      - Linux
-      - riscv64
+    runs-on: neo5
 
     steps:
       - uses: actions/checkout@v3
