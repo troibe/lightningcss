@@ -183,7 +183,7 @@ jobs:
       - name: Install Node.JS
         uses: actions/setup-node@v4
         with:
-          node-version: 25
+          node-version: 18.20.8
           mirror: https://unofficial-builds.nodejs.org/download/release
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
