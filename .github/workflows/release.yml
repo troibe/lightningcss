@@ -198,6 +198,9 @@ jobs:
         with:
           targets: riscv64gc-unknown-linux-gnu
 
+      - name: Setup rust target
+        run: rustup target add riscv64gc-unknown-linux-gnu
+
       - name: Install cross compile toolchain
         run: |
           apt-get update
