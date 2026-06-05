@@ -184,6 +184,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
+          mirror: https://unofficial-builds.nodejs.org/download/release
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
