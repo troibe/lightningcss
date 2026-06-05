@@ -185,7 +185,9 @@ jobs:
       - name: Install Node.JS
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends xz-utils
+          sudo apt-get install -y --no-install-recommends \
+            libatomic1 \
+            xz-utils
           curl -fsSL https://unofficial-builds.nodejs.org/download/release/v18.20.8/node-v18.20.8-linux-riscv64.tar.xz -o /tmp/node-v18.20.8-linux-riscv64.tar.xz
           mkdir -p "${RUNNER_TEMP}/node-v18.20.8"
           tar -xJf /tmp/node-v18.20.8-linux-riscv64.tar.xz -C "${RUNNER_TEMP}/node-v18.20.8" --strip-components=1
